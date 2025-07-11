@@ -56,6 +56,14 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
 
     await async_setup_services(hass)
 
+
+#EBE
+    _LOGGER.warning(f"LOG_EBE L55: m_coordinator.miner: {m_coordinator.miner}")
+#    _LOGGER.warning(f"LOG_EBE L55: m_coordinator.miner._rpc_cls: {m_coordinator.miner._rpc_cls}")
+#    _LOGGER.warning(f"LOG_EBE L55: m_coordinator.miner.raw_model: {m_coordinator.miner.raw_model}")
+#    _LOGGER.warning(f"LOG_EBE L55: m_coordinator.miner.expected_hashboards: {m_coordinator.miner.expected_hashboards}")
+#    _LOGGER.warning(f"LOG_EBE L55: m_coordinator.miner.expected_chips: {m_coordinator.miner.expected_chips}")
+
     return True
 
 

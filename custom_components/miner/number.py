@@ -65,6 +65,14 @@ async def async_setup_entry(
     coordinator: MinerCoordinator = hass.data[DOMAIN][config_entry.entry_id]
 
     await coordinator.async_config_entry_first_refresh()
+#EBE
+#    _LOGGER.warning(f"LOG_EBE numbers.py_L60: coordinator.miner: {coordinator.miner}")
+#    _LOGGER.warning(f"LOG_EBE numbers.py_L60: coordinator.miner._rpc_cls: {coordinator.miner._rpc_cls}")
+#    _LOGGER.warning(f"LOG_EBE numbers.py_L60: coordinator.miner.raw_model: {coordinator.miner.raw_model}")
+#    _LOGGER.warning(f"LOG_EBE numbers.py_L60: coordinator.miner.expected_hashboards: {coordinator.miner.expected_hashboards}")
+#    _LOGGER.warning(f"LOG_EBE numbers.py_L60: coordinator.miner.expected_chips: {coordinator.miner.expected_chips}")
+#    _LOGGER.warning(f"LOG_EBE numbers.py_L60: coordinator.miner.expected_chips: {coordinator.miner.expected_chips}")
+#    _LOGGER.warning(f"LOG_EBE numbers.py_L60: coordinator.miner.supports_autotuning: {coordinator.miner.supports_autotuning}")
     if coordinator.miner.supports_autotuning:
         async_add_entities(
             [
@@ -116,17 +124,23 @@ class MinerPowerLimitNumber(CoordinatorEntity[MinerCoordinator], NumberEntity):
     @property
     def native_min_value(self) -> float | None:
         """Return device minimum value."""
-        return self.coordinator.data["power_limit_range"]["min"]
+#EBE
+#        return self.coordinator.data["power_limit_range"]["min"]
+        return 1800
 
     @property
     def native_max_value(self) -> float | None:
         """Return device maximum value."""
-        return self.coordinator.data["power_limit_range"]["max"]
+#EBE
+#        return self.coordinator.data["power_limit_range"]["max"]
+        return 4500
 
     @property
     def native_step(self) -> float | None:
         """Return device increment step."""
-        return 100
+#EBE
+#        return 100
+        return 300
 
     @property
     def native_unit_of_measurement(self):
@@ -142,6 +156,9 @@ class MinerPowerLimitNumber(CoordinatorEntity[MinerCoordinator], NumberEntity):
             f"{self.coordinator.config_entry.title}: setting power limit to {value}."
         )
 
+#EBE
+        _LOGGER.warning(f"LOG_EBE numbers.py_L150: coordinator.miner: {self.coordinator.config_entry.title}: setting power limit to {value}.")
+#        _LOGGER.warning(f"LOG_EBE numbers.py_L150: miner.supports_autotuning: {miner.supports_autotuning}")
         if not miner.supports_autotuning:
             raise TypeError(
                 f"{self.coordinator.config_entry.title}: Tuning not supported."
@@ -149,6 +166,8 @@ class MinerPowerLimitNumber(CoordinatorEntity[MinerCoordinator], NumberEntity):
 
         result = await miner.set_power_limit(int(value))
 
+#EBE
+        _LOGGER.warning(f"LOG_EBE numbers.py_L150: result: {result}")
         if not result:
             raise pyasic.APIError("Failed to set wattage.")
 

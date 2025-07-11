@@ -10,6 +10,10 @@ from subprocess import Popen
 from homeassistant.util.package import _LOGGER
 from homeassistant.util.package import is_virtual_env
 
+import logging
+#EBE
+_LOGGER = logging.getLogger(__name__)
+
 _UV_ENV_PYTHON_VARS = (
     "UV_SYSTEM_PYTHON",
     "UV_PYTHON",
@@ -30,6 +34,7 @@ def install_package(
     """
 
 #EBE
+    _LOGGER.warning("Attempting install of %s", package)
     return False
 
     _LOGGER.info("Attempting install of %s", package)
