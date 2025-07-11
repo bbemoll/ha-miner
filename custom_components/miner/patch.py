@@ -28,6 +28,10 @@ def install_package(
 
     Return boolean if install successful.
     """
+
+#EBE
+    return False
+
     _LOGGER.info("Attempting install of %s", package)
     env = os.environ.copy()
     args = [

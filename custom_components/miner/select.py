@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 import logging
+#EBE
+_LOGGER = logging.getLogger(__name__)
+
 from importlib.metadata import version
 
 from .const import PYASIC_VERSION
@@ -14,8 +17,15 @@ try:
 except ImportError:
     from .patch import install_package
 
-    install_package(f"pyasic=={PYASIC_VERSION}")
-    import pyasic
+#EBE
+#    install_package(f"pyasic=={PYASIC_VERSION}")
+#    import pyasic
+
+#EBE
+    _LOGGER.warning(f"EBE_20250707: select.py: could not import pyasic: {PYASIC_VERSION}")
+    raise ImportError
+#EBE
+_LOGGER.warning(f"EBE_20250707: select.py: pyasic successfully loaded")
 
 from pyasic.config.mining import MiningModeHPM
 from pyasic.config.mining import MiningModeLPM
@@ -32,7 +42,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from custom_components.miner import DOMAIN
 from custom_components.miner import MinerCoordinator
 
-_LOGGER = logging.getLogger(__name__)
+#EBE
+#_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(

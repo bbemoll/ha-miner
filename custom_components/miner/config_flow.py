@@ -1,5 +1,8 @@
 """Config flow for Miner."""
 import logging
+#EBE
+_LOGGER = logging.getLogger(__name__)
+
 from importlib.metadata import version
 
 from .const import PYASIC_VERSION
@@ -12,8 +15,15 @@ try:
 except ImportError:
     from .patch import install_package
 
-    install_package(f"pyasic=={PYASIC_VERSION}")
-    import pyasic
+#EBE
+#    install_package(f"pyasic=={PYASIC_VERSION}")
+#    import pyasic
+
+#EBE
+    _LOGGER.warning(f"EBE_20250707: config_flow.py: could not import pyasic: {PYASIC_VERSION}")
+    raise ImportError
+#EBE
+_LOGGER.warning(f"EBE_20250707: config_flow.py: pyasic successfully loaded")
 
 from pyasic import MinerNetwork
 
@@ -37,7 +47,8 @@ from .const import CONF_WEB_PASSWORD
 from .const import CONF_WEB_USERNAME
 from .const import DOMAIN
 
-_LOGGER = logging.getLogger(__name__)
+#EBE
+#_LOGGER = logging.getLogger(__name__)
 
 
 async def _async_has_devices(hass: HomeAssistant) -> bool:

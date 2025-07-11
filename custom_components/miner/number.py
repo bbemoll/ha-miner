@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 import logging
+#EBE
+_LOGGER = logging.getLogger(__name__)
+
 from importlib.metadata import version
 
 from .const import PYASIC_VERSION
@@ -14,8 +17,15 @@ try:
 except ImportError:
     from .patch import install_package
 
-    install_package(f"pyasic=={PYASIC_VERSION}")
-    import pyasic
+#EBE
+#    install_package(f"pyasic=={PYASIC_VERSION}")
+#    import pyasic
+
+#EBE
+    _LOGGER.warning(f"EBE_20250707: number.py: could not import pyasic: {PYASIC_VERSION}")
+    raise ImportError
+#EBE
+_LOGGER.warning(f"EBE_20250707: number.py: pyasic successfully loaded")
 
 from homeassistant.components.number import NumberEntityDescription, NumberDeviceClass
 from homeassistant.components.number import NumberEntity
@@ -32,7 +42,8 @@ from homeassistant.const import UnitOfPower
 from .const import DOMAIN
 from .coordinator import MinerCoordinator
 
-_LOGGER = logging.getLogger(__name__)
+#EBE
+#_LOGGER = logging.getLogger(__name__)
 
 
 NUMBER_DESCRIPTION_KEY_MAP: dict[str, NumberEntityDescription] = {

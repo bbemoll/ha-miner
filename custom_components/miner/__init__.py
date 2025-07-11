@@ -1,6 +1,9 @@
 """The Miner integration."""
 from __future__ import annotations
 
+#EBE
+import logging
+_LOGGER = logging.getLogger(__name__)
 
 try:
     import pyasic
@@ -8,8 +11,14 @@ except ImportError:
     from .patch import install_package
     from .const import PYASIC_VERSION
 
-    install_package(f"pyasic=={PYASIC_VERSION}")
-    import pyasic
+#EBE
+#    install_package(f"pyasic=={PYASIC_VERSION}")
+#    import pyasic
+#EBE
+    _LOGGER.warning(f"EBE_20250707: __init__.py: could not import pyasic: {PYASIC_VERSION}")
+    raise ImportError
+#EBE
+_LOGGER.warning(f"EBE_20250707: __init__.py: pyasic successfully loaded")
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform

@@ -1,5 +1,8 @@
 """Miner DataUpdateCoordinator."""
 import logging
+#EBE
+_LOGGER = logging.getLogger(__name__)
+
 from datetime import timedelta
 from importlib.metadata import version
 
@@ -13,8 +16,15 @@ try:
 except ImportError:
     from .patch import install_package
 
-    install_package(f"pyasic=={PYASIC_VERSION}")
-    import pyasic
+#EBE
+#    install_package(f"pyasic=={PYASIC_VERSION}")
+#    import pyasic
+
+#EBE
+    _LOGGER.warning(f"EBE_20250707: coordinator.py: could not import pyasic: {PYASIC_VERSION}")
+    raise ImportError
+#EBE
+_LOGGER.warning(f"EBE_20250707: coordinator.py: pyasic successfully loaded")
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -31,7 +41,8 @@ from .const import CONF_SSH_USERNAME
 from .const import CONF_WEB_PASSWORD
 from .const import CONF_WEB_USERNAME
 
-_LOGGER = logging.getLogger(__name__)
+#EBE
+#_LOGGER = logging.getLogger(__name__)
 
 # Matches iotwatt data log interval
 REQUEST_REFRESH_DEFAULT_COOLDOWN = 5
