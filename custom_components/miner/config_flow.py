@@ -23,9 +23,14 @@ except ImportError:
     _LOGGER.warning(f"EBE_20250711: config_flow.py: could not import pyasic: {PYASIC_VERSION}")
     raise ImportError
 #EBE
-_LOGGER.warning(f"EBE_20250711: config_flow.py: pyasic successfully loaded")
+_LOGGER.warning(f"EBE_20250711 Step 0: config_flow.py: pyasic successfully loaded")
+
+#EBE
+_LOGGER.warning(f"EBE_20250711: config_flow.py: Step 10")
 
 from pyasic import MinerNetwork
+#EBE
+_LOGGER.warning(f"EBE_20250711: config_flow.py: Step 11")
 
 import voluptuous as vol
 from homeassistant import config_entries
@@ -35,6 +40,8 @@ from homeassistant.helpers.config_entry_flow import register_discovery_flow
 from homeassistant.helpers.selector import TextSelector
 from homeassistant.helpers.selector import TextSelectorConfig
 from homeassistant.helpers.selector import TextSelectorType
+#EBE
+_LOGGER.warning(f"EBE_20250711: config_flow.py: Step 12")
 
 from .const import CONF_IP
 from .const import CONF_MIN_POWER
@@ -48,11 +55,15 @@ from .const import CONF_WEB_USERNAME
 from .const import DOMAIN
 
 #EBE
-#_LOGGER = logging.getLogger(__name__)
+_LOGGER.warning(f"EBE_20250711: config_flow.py: Step 2")
 
 
 async def _async_has_devices(hass: HomeAssistant) -> bool:
     """Return if there are devices that can be discovered."""
+
+#EBE
+    _LOGGER.warning(f"EBE_20250711: config_flow.py: Step 3")
+
     adapters = await network.async_get_adapters(hass)
 
     for adapter in adapters:
@@ -65,14 +76,19 @@ async def _async_has_devices(hass: HomeAssistant) -> bool:
                 return True
     return False
 
-
-register_discovery_flow(DOMAIN, "miner", _async_has_devices)
+#EBE
+#register_discovery_flow(DOMAIN, "miner", _async_has_devices)
+register_discovery_flow(DOMAIN, "ha-miner", _async_has_devices)
 
 
 async def validate_ip_input(
     data: dict[str, str]
 ) -> tuple[dict[str, str], pyasic.AnyMiner | None]:
     """Validate the user input allows us to connect."""
+
+#EBE
+    _LOGGER.warning(f"EBE_20250711: config_flow.py: Step 4")
+
     miner_ip = data.get(CONF_IP)
 
     miner = await pyasic.get_miner(miner_ip)
@@ -85,15 +101,24 @@ async def validate_ip_input(
 class MinerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Miner."""
 
+#EBE
+    _LOGGER.warning(f"EBE_20250711: config_flow.py: Step 5")
+
     VERSION = 1
 
     def __init__(self):
         """Initialize."""
+#EBE
+        _LOGGER.warning(f"EBE_20250711: config_flow.py: Step 6")
+
         self._data = {}
         self._miner = None
 
     async def async_step_user(self, user_input=None):
         """Get miner IP and check if it is available."""
+#EBE
+        _LOGGER.warning(f"EBE_20250711: config_flow.py: Step 7")
+
         if user_input is None:
             user_input = {}
 
@@ -108,6 +133,9 @@ class MinerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 ),
             }
         )
+
+#EBE
+        _LOGGER.warning(f"EBE_20250711: config_flow.py: Step 7")
 
         if not user_input:
             return self.async_show_form(step_id="user", data_schema=schema)
@@ -125,6 +153,9 @@ class MinerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_login(self, user_input=None):
         """Get miner login credentials."""
+#EBE
+        _LOGGER.warning(f"EBE_20250711: config_flow.py: Step 8")
+
         if user_input is None:
             user_input = {}
 
@@ -201,6 +232,10 @@ class MinerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_title(self, user_input=None):
         """Get entity title."""
+
+#EBE
+        _LOGGER.warning(f"EBE_20250711: config_flow.py: Step 9")
+
         if self._miner.api is not None:
             if self._miner.api.pwd is not None:
                 self._miner.api.pwd = self._data.get(CONF_RPC_PASSWORD, "")
