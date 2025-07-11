@@ -11,6 +11,11 @@
 [![Project Maintenance][maintenance1-shield]][user1_profile]
 [![Project Maintenance][maintenance2-shield]][user2_profile]
 
+WARNING: This repository was forked from hass-miner project to try and learn how to develop or make changes to HACS for Home Assistant.
+It has not been tested enough, nor planned or considered for real usage. Use it only at your own risk! In the worst case, it can damage your hardware! 
+
+-----------------------------------------------------------
+
 Control and monitor your Bitcoin Miners from Home Assistant.
 
 Great for Heat Reusage, Solar Mining or any usecase where you don't need your miners running 24/7 or with a specific wattage.
