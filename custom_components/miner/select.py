@@ -11,9 +11,9 @@ from .const import PYASIC_VERSION
 
 try:
     import pyasic
-
-    if not version("pyasic") == PYASIC_VERSION:
-        raise ImportError
+#EBE
+#    if not version("pyasic") == PYASIC_VERSION:
+#        raise ImportError
 except ImportError:
     from .patch import install_package
 
@@ -22,10 +22,10 @@ except ImportError:
 #    import pyasic
 
 #EBE
-    _LOGGER.warning(f"EBE_20250707: select.py: could not import pyasic: {PYASIC_VERSION}")
+    _LOGGER.warning(f"EBE_20250711: select.py: could not import pyasic: {PYASIC_VERSION}")
     raise ImportError
 #EBE
-_LOGGER.warning(f"EBE_20250707: select.py: pyasic successfully loaded")
+_LOGGER.warning(f"EBE_20250711: select.py: pyasic successfully loaded")
 
 from pyasic.config.mining import MiningModeHPM
 from pyasic.config.mining import MiningModeLPM

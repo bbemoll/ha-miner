@@ -34,7 +34,7 @@ def install_package(
     """
 
 #EBE
-    _LOGGER.warning("Attempting install of %s", package)
+    _LOGGER.warning("EBE_20250711: Abort before attempting install of %s", package)
     return False
 
     _LOGGER.info("Attempting install of %s", package)

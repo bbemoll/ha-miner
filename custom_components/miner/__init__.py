@@ -15,10 +15,10 @@ except ImportError:
 #    install_package(f"pyasic=={PYASIC_VERSION}")
 #    import pyasic
 #EBE
-    _LOGGER.warning(f"EBE_20250707: __init__.py: could not import pyasic: {PYASIC_VERSION}")
+    _LOGGER.warning(f"EBE_20250711: __init__.py: could not import pyasic: {PYASIC_VERSION}")
     raise ImportError
 #EBE
-_LOGGER.warning(f"EBE_20250707: __init__.py: pyasic successfully loaded")
+_LOGGER.warning(f"EBE_20250711: __init__.py: pyasic successfully loaded")
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
