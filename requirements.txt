@@ -5,7 +5,7 @@ ruff==0.6.9
 
 #EBE
 #pyasic==0.68.54
-pyasic==9.9.1
+ha-pyasic==9.9.1
 
 setuptools==75.1.0
 pre-commit
